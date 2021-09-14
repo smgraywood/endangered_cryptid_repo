@@ -89,3 +89,29 @@ ALTER TABLE ONLY public.tasks
 -- PostgreSQL database dump complete
 --
 
+
+CREATE TABLE Species(
+ id serial PRIMARY KEY, 
+ Common_Name text,
+ Scientific_Name text,
+ Number_Estimated_In_Wild integer,
+ Conservation_Status text,
+ Record_Created time
+  )
+
+CREATE TABLE Individuals(
+ id serial PRIMARY KEY,   
+ Nckname text,
+ Species text,
+ Record_Created time    
+  )
+
+CREATE TABLE Sightings(
+ id serial PRIMARY KEY,   
+ Date_&_Time  varchar,
+ Individual_Seen varchar,
+ Location_of_Sighting varchar,
+ Healthy? boolean,
+ Sighters_Contact_Info varchar,
+ Record_Created time
+)
