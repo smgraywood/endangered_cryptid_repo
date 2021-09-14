@@ -30,6 +30,5 @@ const Dashboard = () => (
   </>
 );
 
-//this is a test comment
 
 export default App;
