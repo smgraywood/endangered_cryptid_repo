@@ -103,15 +103,56 @@ CREATE TABLE Individuals(
  id serial PRIMARY KEY,   
  Nckname text,
  Species text,
- Record_Created time    
+ Record_Created time
   )
 
 CREATE TABLE Sightings(
  id serial PRIMARY KEY,   
- Date_&_Time  varchar,
+ Date_and_Time  varchar,
  Individual_Seen varchar,
  Location_of_Sighting varchar,
- Healthy? boolean,
+ Healthy boolean,
  Sighters_Contact_Info varchar,
  Record_Created time
 )
+
+
+
+INSERT INTO 
+Species (id, common_name, scientific_name, number_estimated_in_wild, conservation_status, record_created) 
+VALUES 
+(1, 'Caddy', 'Cadborosaurus', 3, 09:55:00), 
+(2, 'Champ', 'Champtanystropheus Americanus', 1, 09:58:00), 
+(3, 'Loveland lizard', 'Loveland Frog', 3, 10:01:00), 
+(4, 'Ogopogo', 'Naitaka', 6, 10:06:01),
+(5, 'Bigfoot', 'Sasquatch', 9, 10:07:01),
+(6, 'Goat Sucker', 'Chupacabra', 7, 10:11:23),
+(7, 'Fouke Monster', 'Southern Sasquatch', 2, 10:12:14),
+(8, 'Honey Island Swamp monster', 'Letiche', 1, 10:15:17),
+(9, 'Skunk ape', 'Myakka Ape', 8, 10:16:03),
+(10, 'Jersey Devil', 'Leeds Devil', 1, 10:20:33),
+(11, 'Mothman', 'Mothman', 1, 10:21:01),
+(12, 'Thunderbird', 'Thunderbird', 4, 10:24:01),
+(13, 'Sea Ape', 'Siren Cynocephala', 1, 10:41:01);
+
+INSERT INTO Individuals(id , Nckname, Species, Record_Created)
+VALUES
+(1, 'Hiyitliik', 'Cadborosaurus', 09:55:00),
+(2, 'Champy', 'Champtanystropheus Americanus', 09:58:00),
+(3, 'Primrose', 'Loveland Frog', 10:51:00),
+(4, 'Water God', 'Naitaka', 10:55:00),
+(5, 'Hairy Man', 'Sasquatch', 11:00:00),
+(6, 'El Vampiro de Moca', 'Chupacabra', 11:15:00),
+(7, 'Boggy', 'Southern Sasquatch', 11:25:00),
+(8, 'Esti Capcaki', 'Myakka Ape', 11:29:00),
+(9, 'Jane Leeds 13th Child', 'Leeds Devil', 11:35:00),
+(10, 'Mothy', 'Mothman', 11:39:00),
+(11, 'Lightning', 'Thunderbird', 11:41:00),
+(12, 'Stellers Sea Ape', 'Siren Cynocephala', 11:45:00),
+(13, ' Canóvanas Devil', 'Chupacabra', 11:55:00);
+
+
+INSERT INTO 
+Sightings(id, Date_and_Time, Individual_Seen, Location_of_Sighting, Healthy, Sighters_Contact_Info, Record_Created)
+ VALUES
+ (1, Date_and_Time, Individual_Seen, Location_of_Sighting, Healthy, Sighters_Contact_Info, Record_Created)
