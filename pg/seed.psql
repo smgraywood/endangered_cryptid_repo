@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 13.3
--- Dumped by pg_dump version 13.3
+-- Dumped from database version 13.4
+-- Dumped by pg_dump version 13.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,6 +19,107 @@ SET row_security = off;
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
+
+--
+-- Name: individuals; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.individuals (
+    id integer NOT NULL,
+    nckname text,
+    species text,
+    record_created time without time zone
+);
+
+
+--
+-- Name: individuals_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.individuals_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: individuals_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.individuals_id_seq OWNED BY public.individuals.id;
+
+
+--
+-- Name: sightings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sightings (
+    id integer NOT NULL,
+    date_and_time character varying,
+    individual_seen character varying,
+    location_of_sighting character varying,
+    healthy boolean,
+    sighters_contact_info character varying,
+    record_created time without time zone
+);
+
+
+--
+-- Name: sightings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sightings_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sightings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sightings_id_seq OWNED BY public.sightings.id;
+
+
+--
+-- Name: species; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.species (
+    id integer NOT NULL,
+    common_name text,
+    scientific_name text,
+    number_estimated_in_wild integer,
+    conservation_status text,
+    record_created time without time zone
+);
+
+
+--
+-- Name: species_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.species_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: species_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.species_id_seq OWNED BY public.species.id;
+
 
 --
 -- Name: tasks; Type: TABLE; Schema: public; Owner: -
@@ -51,10 +152,92 @@ ALTER SEQUENCE public.tasks_id_seq OWNED BY public.tasks.id;
 
 
 --
+-- Name: individuals id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.individuals ALTER COLUMN id SET DEFAULT nextval('public.individuals_id_seq'::regclass);
+
+
+--
+-- Name: sightings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sightings ALTER COLUMN id SET DEFAULT nextval('public.sightings_id_seq'::regclass);
+
+
+--
+-- Name: species id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.species ALTER COLUMN id SET DEFAULT nextval('public.species_id_seq'::regclass);
+
+
+--
 -- Name: tasks id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.tasks ALTER COLUMN id SET DEFAULT nextval('public.tasks_id_seq'::regclass);
+
+
+--
+-- Data for Name: individuals; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.individuals (id, nckname, species, record_created) FROM stdin;
+1	Hiyitliik	Cadborosaurus	09:55:01
+2	Champy	Champtanystropheus Americanus	09:58:01
+3	Primrose	Loveland Frog	10:51:01
+4	Water God	Naitaka	10:55:01
+5	Hairy Man	Sasquatch	11:00:01
+6	El Vampiro de Moca	Chupacabra	11:15:01
+7	Boggy	Southern Sasquatch	11:25:01
+8	Esti Capcaki	Myakka Ape	11:29:01
+9	Mother Leeds 13th Child	Leeds Devil	11:35:01
+10	Mothy	Mothman	11:39:01
+11	Lightning	Thunderbird	11:41:01
+12	Stellers Sea Ape	Siren Cynocephala	11:45:01
+13	 Canóvanas Devil	Chupacabra	11:55:01
+\.
+
+
+--
+-- Data for Name: sightings; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.sightings (id, date_and_time, individual_seen, location_of_sighting, healthy, sighters_contact_info, record_created) FROM stdin;
+1	1 March 1995 11:30:00	 Canóvanas Devil	 Canóvanas, Puerto Rico	t	Madelyne Tolentino, MadT@gmail.com	08:28:02
+2	1 March 1975 1:30:00	El Vampiro de Moca	Moca, Puerto Rico	t	Badillo Roldan, BRoldan@gmail.com	08:31:02
+3	3 March 1975 1:30:00	El Vampiro de Moca	Moca, Puerto Rico	t	Juan Hernandez & Juanito Hernandez, JH1961@gmail.com	08:38:02
+4	11 March 1975 1:30:00	El Vampiro de Moca	Auguadilla, Puerto Rico	t	Edwin Calde, CaldeCaldo1950@gmail.com	08:40:02
+5	17 March 1975 1:30:00	El Vampiro de Moca	Aguadilla, Puerto Rico	t	Nelson Cordero, CorteCordero@gmail.com	08:41:02
+6	21 March 1975 1:30:00	El Vampiro de Moca	Aguadilla, Puerto Rico	t	Hipolito Gerena, HipoHipo@gmail.com	08:42:02
+7	1 January 2009 1:30:00	Hairy Man	6 Rivers National Forrest, California, USA	t	Sean Fries & Duncan Jensen, FrenchFries@gmail.com	08:46:02
+8	8 May 2005 1:30:00	Hairy Man	Del Norte County, California, USA	t	Unidentified Yurok Girls, N/A	08:49:02
+9	22 September 2005 1:30:00	Hairy Man	Del Norte County, California, USA	t	Travis Cover, Cover.Travis@gmail.com	08:52:02
+10	16 January 1909 7:30:00	Mother Leeds 13th Child	Mt Ephriam, New Jersey, USA	t	William Rowland, James Zane, Robert Beetles, N/A	08:53:02
+11	20 January 1909 7:30:00	Mother Leeds 13th Child	Gloucester City, New Jersey, USA	t	Nelson and Mrs. Evans, N/A	09:09:02
+\.
+
+
+--
+-- Data for Name: species; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.species (id, common_name, scientific_name, number_estimated_in_wild, conservation_status, record_created) FROM stdin;
+1	Caddy	Cadborosaurus	3	CR	09:55:01
+2	Champ	Champtanystropheus Americanus	1	CR	09:58:01
+3	Loveland lizard	Loveland Frog	3	CR	10:01:01
+4	Ogopogo	Naitaka	6	CR	10:06:02
+5	Bigfoot	Sasquatch	9	CR	10:07:02
+6	Goat Sucker	Chupacabra	7	CR	10:11:24
+7	Fouke Monster	Southern Sasquatch	2	CR	10:12:15
+8	Honey Island Swamp monster	Letiche	1	CR	10:15:18
+9	Skunk ape	Myakka Ape	8	CR	10:16:04
+10	Jersey Devil	Leeds Devil	1	CR	10:20:34
+11	Mothman	Mothman	1	CR	10:21:02
+12	Thunderbird	Thunderbird	4	CR	10:24:02
+13	Sea Ape	Siren Cynocephala	1	CR	10:41:02
+\.
 
 
 --
@@ -67,14 +250,60 @@ COPY public.tasks (id, name) FROM stdin;
 3	End white supremacy
 4	Advocate for living wage
 5	Provide universal health care
+6	Lock Ness Monster
 \.
+
+
+--
+-- Name: individuals_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.individuals_id_seq', 1, false);
+
+
+--
+-- Name: sightings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.sightings_id_seq', 1, false);
+
+
+--
+-- Name: species_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.species_id_seq', 1, false);
 
 
 --
 -- Name: tasks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.tasks_id_seq', 5, true);
+SELECT pg_catalog.setval('public.tasks_id_seq', 6, true);
+
+
+--
+-- Name: individuals individuals_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.individuals
+    ADD CONSTRAINT individuals_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sightings sightings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sightings
+    ADD CONSTRAINT sightings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: species species_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.species
+    ADD CONSTRAINT species_pkey PRIMARY KEY (id);
 
 
 --
@@ -89,70 +318,3 @@ ALTER TABLE ONLY public.tasks
 -- PostgreSQL database dump complete
 --
 
-
-CREATE TABLE Species(
- id serial PRIMARY KEY, 
- Common_Name text,
- Scientific_Name text,
- Number_Estimated_In_Wild integer,
- Conservation_Status text,
- Record_Created time
-  )
-
-CREATE TABLE Individuals(
- id serial PRIMARY KEY,   
- Nckname text,
- Species text,
- Record_Created time
-  )
-
-CREATE TABLE Sightings(
- id serial PRIMARY KEY,   
- Date_and_Time  varchar,
- Individual_Seen varchar,
- Location_of_Sighting varchar,
- Healthy boolean,
- Sighters_Contact_Info varchar,
- Record_Created time
-)
-
-
-
-INSERT INTO 
-Species (id, common_name, scientific_name, number_estimated_in_wild, conservation_status, record_created) 
-VALUES 
-(1, 'Caddy', 'Cadborosaurus', 3, 09:55:00), 
-(2, 'Champ', 'Champtanystropheus Americanus', 1, 09:58:00), 
-(3, 'Loveland lizard', 'Loveland Frog', 3, 10:01:00), 
-(4, 'Ogopogo', 'Naitaka', 6, 10:06:01),
-(5, 'Bigfoot', 'Sasquatch', 9, 10:07:01),
-(6, 'Goat Sucker', 'Chupacabra', 7, 10:11:23),
-(7, 'Fouke Monster', 'Southern Sasquatch', 2, 10:12:14),
-(8, 'Honey Island Swamp monster', 'Letiche', 1, 10:15:17),
-(9, 'Skunk ape', 'Myakka Ape', 8, 10:16:03),
-(10, 'Jersey Devil', 'Leeds Devil', 1, 10:20:33),
-(11, 'Mothman', 'Mothman', 1, 10:21:01),
-(12, 'Thunderbird', 'Thunderbird', 4, 10:24:01),
-(13, 'Sea Ape', 'Siren Cynocephala', 1, 10:41:01);
-
-INSERT INTO Individuals(id , Nckname, Species, Record_Created)
-VALUES
-(1, 'Hiyitliik', 'Cadborosaurus', 09:55:00),
-(2, 'Champy', 'Champtanystropheus Americanus', 09:58:00),
-(3, 'Primrose', 'Loveland Frog', 10:51:00),
-(4, 'Water God', 'Naitaka', 10:55:00),
-(5, 'Hairy Man', 'Sasquatch', 11:00:00),
-(6, 'El Vampiro de Moca', 'Chupacabra', 11:15:00),
-(7, 'Boggy', 'Southern Sasquatch', 11:25:00),
-(8, 'Esti Capcaki', 'Myakka Ape', 11:29:00),
-(9, 'Jane Leeds 13th Child', 'Leeds Devil', 11:35:00),
-(10, 'Mothy', 'Mothman', 11:39:00),
-(11, 'Lightning', 'Thunderbird', 11:41:00),
-(12, 'Stellers Sea Ape', 'Siren Cynocephala', 11:45:00),
-(13, ' Canóvanas Devil', 'Chupacabra', 11:55:00);
-
-
-INSERT INTO 
-Sightings(id, Date_and_Time, Individual_Seen, Location_of_Sighting, Healthy, Sighters_Contact_Info, Record_Created)
- VALUES
- (1, Date_and_Time, Individual_Seen, Location_of_Sighting, Healthy, Sighters_Contact_Info, Record_Created)
