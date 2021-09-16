@@ -3,11 +3,12 @@ import pgp from "pg-promise";
 
 const db = initDb();
 
-export const getTasks = () => db.any("SELECT * FROM tasks");
+export const getSpecies = () => db.any("SELECT * FROM species");
 
-export const addTask = (name) =>
-  db.one("INSERT INTO tasks(name) VALUES(${name}) RETURNING *", { name });
 
+export const addSpecies = (name) =>
+  db.one("INSERT INTO species(name) VALUES(${name}) RETURNING *", { name });
+  //^TODO SMG this will break if you dont update to accept multiple columns
 function initDb() {
   let connection;
 

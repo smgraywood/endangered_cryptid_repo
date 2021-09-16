@@ -1,6 +1,6 @@
-export const getTasks = () => _get("/api/tasks");
+export const getSpecies = () => _get("/api/species");
 
-export const addTask = (name) => _post("/api/tasks", { name });
+export const addSpecies = (name) => _post("/api/species", { name });
 
 const _get = async (url) => (await fetch(url)).json();
 

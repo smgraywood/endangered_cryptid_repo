@@ -1,11 +1,11 @@
 import express from "express";
 import mime from "mime-types";
 
-import taskRouter from "./taskRouter.mjs";
+import speciesRouter from "./speciesRouter.mjs";
 
 const app = express();
 
-app.use("/api/tasks", taskRouter);
+app.use("/api/species", speciesRouter);
 
 app.get("/api/ping", (request, response) =>
   response.json({ response: "pong" }),
