@@ -2,10 +2,14 @@ import express from "express";
 import mime from "mime-types";
 
 import speciesRouter from "./speciesRouter.mjs";
+import individualsRouter from "./individualsRouter.mjs";
+import sightingsRouter from "./sightingsRouter.mjs";
 
 const app = express();
 
 app.use("/api/species", speciesRouter);
+app.use("/api/individuals", individualsRouter);
+app.use("/api/sightings", sightingsRouter);
 
 app.get("/api/ping", (request, response) =>
   response.json({ response: "pong" }),

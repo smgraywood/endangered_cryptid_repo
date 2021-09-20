@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+body {
+    background-image: url("https://i.pinimg.com/originals/fb/63/98/fb639834bb9c1e82f915057273e98182.jpg");
+    /* https://dailyutahchronicle.com/wp-content/uploads/2018/10/IMG_0286.jpg */
+    background-color: #FFF8E6;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position-x: center;
+    background-size: contain;
+}
+nav{
+    display: flex;
+    flex-direction: row;
+    margin: 10px auto;
+    background-color: #D6D7CC;;
+    border: #ffffff;
+    opacity: .8;
+    text-align: center;
+    justify-content: center;
+    border-radius: 75px;
+    padding: 20px;
+    font-size: 20px;
+    border-style: solid;
+    border: 2px, #ffffff;
+    font-family: 'Courier Prime', monospace;
+}
+a{
+    color: #000000;
+}
+li{
+    display: flex;
+    flex-direction: row;
+    margin: 10px auto;
+    background-color: #b6b6b0;
+    border: #000000;
+    opacity: .6;
+    text-align: center;
+    justify-content: center;
+    border-radius: 75px;
+    padding: 20px;
+    border-style: solid;
+    border: 2px, #ffffff;
+    font-family: 'Roboto Slab', serif;
+    width: 300px;
+}

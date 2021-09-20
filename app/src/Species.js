@@ -5,13 +5,12 @@ import * as apiClient from "./apiClient";
 const Species = () => {
   const [species, setSpecies] = React.useState([]);
 
-  const loadSpecies = async () => setSpecies(await apiClient.getSpecies());
-  const addSpecies = (species) =>
-    apiClient.addSpecies(species).then(loadSpecies);
-
+  const loadSpecies = () => apiClient.getSpecies().then(setSpecies);
   React.useEffect(() => {
     loadSpecies();
   }, []);
+  const addSpecies = (species) =>
+    apiClient.addSpecies(species).then(loadSpecies);
 
   return (
     <section>
@@ -33,7 +32,8 @@ const SpeciesList = ({ species }) => (
         record_created,
       }) => (
         <li key={id}>
-          {scientific_name},{common_name}
+          {scientific_name},{common_name},{number_estimated_in_wild},
+          {conservation_status}
         </li>
       ),
     )}
