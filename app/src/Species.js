@@ -32,7 +32,7 @@ const SpeciesList = ({ species }) => (
         record_created,
       }) => (
         <li key={id}>
-          {scientific_name},{common_name},{number_estimated_in_wild},
+          {scientific_name} | {common_name} | {number_estimated_in_wild} |{" "}
           {conservation_status}
         </li>
       ),

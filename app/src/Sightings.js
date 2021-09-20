@@ -33,8 +33,8 @@ const SightingsList = ({ sightings }) => (
         record_created,
       }) => (
         <li key={id}>
-          {date_and_time},{individual_seen},{location_of_sighting},{healthy},
-          {sighters_contact_info},{record_created}
+          {date_and_time} | {individual_seen} | {location_of_sighting} |{" "}
+          {healthy} | {sighters_contact_info} | {record_created}
         </li>
       ),
     )}

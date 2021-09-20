@@ -24,7 +24,7 @@ const IndividualsList = ({ individuals }) => (
   <ul>
     {individuals.map(({ id, nckname, species, record_created }) => (
       <li key={id}>
-        {nckname}, {species}, {record_created}
+        {nckname} | {species} | {record_created}
       </li>
     ))}
   </ul>
